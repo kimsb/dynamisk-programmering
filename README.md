@@ -5,16 +5,16 @@ Her skal vi øve oss på litt dynamisk programmering ved å jobbe med Fibonacci-
 Enkelt forklart så er dynamisk programmering en generell metode som hjelper oss med å løse større problemer ved å dele dem opp i mindre problemer,
 løse disse mindre problemene hver for seg, og deretter bruke resultatene fra dette i løsningen av det større problemet.
 
-Dere kan lese mer om dynamisk programmering og hva slags problemer som lar seg løse ved hjelp av dynamisk programmering her: https://en.wikipedia.org/wiki/Dynamic_programming
+Dere kan lese mer om dynamisk programmering og hva slags problemer som lar seg løse ved hjelp av dynamisk programmering på [wikipedia](https://en.wikipedia.org/wiki/Dynamic_programming)
 
 En vanlig fremgangsmåte er å
 - finne en naiv, rekursiv algoritme som løser et mindre testsett
-- legge til memoisering https://en.wikipedia.org/wiki/Memoization (lagring av resultater på delproblemer underveis) for øke ytelse
+- legge til [memoisering](https://en.wikipedia.org/wiki/Memoization) (lagring av resultater på delproblemer underveis) for øke ytelse
 - lage en "bottom-up"-implementasjon for å kvitte seg med rekursive kall
 
 OK, la oss teste det ut!
 
-#Fibonacci-følgen: https://no.wikipedia.org/wiki/Fibonaccitall
+# [Fibonacci-følgen](https://no.wikipedia.org/wiki/Fibonaccitall)
 [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, ...]
 
 Oppgaven går ut på å lage en metode `fib(n)` som tar et tall 'n' og returnerer tallet i fibonacci-følgen som ligger på indeks 'n'.
@@ -24,12 +24,12 @@ Oppgaven går ut på å lage en metode `fib(n)` som tar et tall 'n' og returnere
 - eks: fib(10) -> 55
 
 "Bortsett fra de to første startverdiene 0 og 1 framkommer leddene i følgen ved å summere de to forrige leddene"
+
 Det vil si at vi kan finne fib(n) ved å legge sammen fib(n-1) + fib(n-2)
 
-Hvis dere vil kan dere se på denne youtube-filmen som forklarer konseptet ganske så fint:
-https://www.youtube.com/watch?v=vYquumk4nWw
+Hvis dere vil kan dere se på denne [youtube-filmen](https://www.youtube.com/watch?v=vYquumk4nWw) som forklarer konseptet ganske så fint.
 
-##Vi starter med å lage den naive, rekursive fremgangsmåten:
+## Vi starter med å lage den naive, rekursive fremgangsmåten:
 - hvis n == 0 eller 1, returner n,
 - ellers: returner fib(n-1) + fib(n-2)
 
@@ -51,7 +51,7 @@ Dette funker jo fint!
 ...men kun for veldig små 'n'. Allerede ved n = 40 begynner dette å gå alt for tregt...
 Denne fremgangsmåten har en kompleksitet på O(2^n), det vil si at tidsbruken øker eksponensielt.
 
-##La oss speede opp ved å legge til memoisering
+## La oss speede opp ved å legge til memoisering
 
 - lag et array med størrelse n+1 og bruk det til å lagre alle de midlertidige resultatene.
 - hvis array[n] allerede har blitt regnet ut, returner resultatet direkte
@@ -142,10 +142,9 @@ Kult!
 Nå funker faktisk fib(1 000 000), selv om det tar noen sekunder...
 Shit, det resultatet er et stoooort tall!
 
+# Knapsack 0-1 
 
-#Knapsack 0-1 
-
-Her kan du lese mer om knapsack-problemet: https://en.wikipedia.org/wiki/Knapsack_problem
+Her kan du lese mer om [knapsack-problemet](https://en.wikipedia.org/wiki/Knapsack_problem)
 Knapsack 0-1 er en enkel versjon av problemet, hvor et element enten blir ignorert (0) eller valgt (1)
 
 Vi har n antall elementer og 'sekken' vår har en kapasitet c (maks vekt).
@@ -153,10 +152,9 @@ De n elementene har en vekt og en verdi, som ligger i to korresponderende arrays
 
 Oppgaven er altså å plukke ut de elementene som har plass i sekken, og som gir høyest samlet verdi.
 
-Her er en fin youtube-film som forklarer konseptet ganske så fint:
-https://www.youtube.com/watch?v=xOlhR_2QCXY&t
+Her er en [youtube-film](https://www.youtube.com/watch?v=xOlhR_2QCXY&t) som forklarer konseptet ganske så fint:
 
-##Først den naive rekursive algoritmen
+## Først den naive rekursive algoritmen
 Vi starter med en peker bakerst på arrayet, og så går vi gjennom alle elementene og gjør begge valgene:
 - IKKE ta med elementet - (pekeren flyttes til n-1)
 - ta med elementet - (reduser kapasitet og øk samlet verdi før pekeren flyttes til n-1)
@@ -192,7 +190,7 @@ fun knapsack(n: Int, c: Int): Int {
 
 Dette funker jo utmerket! ...men som tidligere vil denne algoritmen gi oss en kompleksitet på O(2^n) og vi får problemer med større testsett...
 
-##La oss legge til memoisering!
+## La oss legge til memoisering!
 
 Vi har maksimalt n * c mulige kombinasjoner av elementer,
 så la oss lage et todimensjonalt array[n+1][c+1] hvor vi kan lagre resultater underveis.
@@ -227,7 +225,7 @@ fun knapsack(n: Int, c: Int): Int {
 Dette gir oss en kompleksitet på O(n) som er mye bedre!
 ...men her også vil vi få trøbbel med mange rekursive kall ved større testsett...
 
-Ønsker du noen tøffere utfordringer?
+## Ønsker du noen tøffere utfordringer?
 Finn en bottom-up implementasjon av den algoritmen vi har laget nå, og prøv deg på testsettet med 10000 elementer.
 Med en kapasitet på 49877 skal høyeste samlede verdi bli 563647
 
