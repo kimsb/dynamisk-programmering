@@ -5,7 +5,7 @@ Her skal vi øve oss på litt dynamisk programmering ved å jobbe med Fibonacci-
 Enkelt forklart så er dynamisk programmering en generell metode som hjelper oss med å løse større problemer ved å dele dem opp i mindre problemer,
 løse disse mindre problemene hver for seg, og deretter bruke resultatene fra dette i løsningen av det større problemet.
 
-Dere kan lese mer om dynamisk programmering og hva slags problemer som lar seg løse ved hjelp av dynamisk programmering på [wikipedia](https://en.wikipedia.org/wiki/Dynamic_programming)
+Dere kan lese mer om dynamisk programmering og hva slags problemer som lar seg løse ved hjelp av dynamisk programmering på [wikipedia](https://en.wikipedia.org/wiki/Dynamic_programming).
 
 En vanlig fremgangsmåte er å
 - finne en naiv, rekursiv algoritme som løser et mindre testsett
@@ -23,14 +23,14 @@ Oppgaven går ut på å lage en metode `fib(n)` som tar et tall `n` og returnere
 - eks: `fib(5) -> 5`
 - eks: `fib(10) -> 55`
 
-"Bortsett fra de to første startverdiene 0 og 1 framkommer leddene i følgen ved å summere de to forrige leddene"
+"Bortsett fra de to første startverdiene 0 og 1 framkommer leddene i følgen ved å summere de to forrige leddene".
 
-Det vil si at vi kan finne `fib(n)` ved å legge sammen `fib(n-1) + fib(n-2)`
+Det vil si at vi kan finne `fib(n)` ved å legge sammen `fib(n-1) + fib(n-2)`.
 
 Hvis dere vil kan dere se på denne [youtube-filmen](https://www.youtube.com/watch?v=vYquumk4nWw) som forklarer konseptet ganske så fint.
 
 ## Vi starter med å lage den naive, rekursive fremgangsmåten:
-- hvis `n == 0` eller `n == 1`, returner `n`,
+- hvis `n == 0` eller `n == 1`, returner `n`
 - ellers: returner `fib(n-1) + fib(n-2)`
 
 <details>
@@ -53,9 +53,9 @@ Denne fremgangsmåten har en kompleksitet på `O(2^n)`, det vil si at tidsbruken
 
 ## La oss speede opp ved å legge til memoisering
 
-- lag et array med størrelse `n+1` og bruk det til å lagre alle de midlertidige resultatene.
-- hvis `array[n]` allerede har blitt regnet ut, returner resultatet direkte.
-- ellers - gjør som vi gjorde i den naive, rekursive metoden.
+- lag et array med størrelse `n+1` og bruk det til å lagre alle de midlertidige resultatene
+- hvis `array[n]` allerede har blitt regnet ut, returner resultatet direkte
+- ellers - gjør som vi gjorde i den naive, rekursive metoden
 
 <details>
   <summary>Eksempel på implementasjon i Kotlin</summary>
@@ -78,7 +78,7 @@ fun fib(n: Int): BigInteger {
 
 Denne algoritmen funker mye bedre, og har en kompleksitet på `O(n)`, altså lineær tid.
 Det går med andre ord ganske kjapt, og `fib(1 000)` kjøres med null problemer! ...men, med stor `n` blir det veldig mange rekursive kall som legges på call-stacken.
-I mitt eksempel, som er implementert med Kotlin, så kræsjer koden om jeg f.eks prøver meg på `fib(10 000)`
+I mitt eksempel, som er implementert med Kotlin, så kræsjer koden med StackOverflowError om jeg f.eks prøver meg på `fib(10 000)`.
 
 ## Hva om vi heller prøver bottom-up?
 Da kan vi droppe de rekursive kallene og heller starte ved `n = 0` og fylle arrayet opp til og med `n`.
@@ -109,7 +109,7 @@ fun fib(n: Int): BigInteger {
 </details>
 
 Nå begynner vi å snakke! `fib(10 000)` fungerer uten problemer, det gjør `fib(100 000)` også!
-...men det blir jo et himla stort array etterhvert... I mitt eksempel, som er implementert i Kotlin, så kræsjer koden med OutOfMemoryError om jeg prøver meg på `fib(1 000 000)`
+...men det blir jo et himla stort array etterhvert... I mitt eksempel, som er implementert i Kotlin, så kræsjer koden med OutOfMemoryError om jeg prøver meg på `fib(1 000 000)`.
 
 ## Kan vi optimalisere enda mer?
 
@@ -144,15 +144,16 @@ Shit, det resultatet er et stoooort tall!
 
 # Knapsack 0-1 
 
-Her kan du lese mer om [knapsack-problemet](https://en.wikipedia.org/wiki/Knapsack_problem)
-*Knapsack 0-1* er en enkel versjon av problemet, hvor et element enten blir ignorert (0) eller valgt (1)
+Her kan du lese mer om [knapsack-problemet](https://en.wikipedia.org/wiki/Knapsack_problem).
+
+*Knapsack 0-1* er en enkel versjon av problemet, hvor et element enten blir ignorert (0) eller valgt (1), og ingen elementer kan velges mer enn én gang.
 
 Vi har `n` antall elementer og 'sekken' vår har en kapasitet `c` (maks vekt).
-De `n` elementene har en vekt og en verdi, som ligger i to korresponderende arrays av størrelse `n+1`
+De `n` elementene har en vekt og en verdi, som ligger i to korresponderende arrays av størrelse `n+1`.
 
 Oppgaven er altså å plukke ut de elementene som har plass i sekken, og som gir høyest samlet verdi.
 
-Her er en [youtube-film](https://www.youtube.com/watch?v=xOlhR_2QCXY&t) som forklarer konseptet ganske så fint:
+Her er en [youtube-film](https://www.youtube.com/watch?v=xOlhR_2QCXY&t) som forklarer konseptet ganske så fint.
 
 ## Først den naive rekursive algoritmen
 Vi starter med en peker bakerst på arrayet (`n`), og så går vi gjennom alle elementene og gjør begge valgene:
@@ -167,7 +168,7 @@ verdier = `[0,5,3,5,3,2]`,
 n = `5`,
 c = `10`
 
-Dette skal gi en samlet sum på `16`
+Dette skal gi en samlet sum på `16`.
 
 <details>
   <summary>Eksempel på implementasjon i Kotlin</summary>
@@ -195,7 +196,7 @@ Dette funker jo utmerket! ...men som tidligere vil denne algoritmen gi oss en ko
 Vi har maksimalt `n * c` mulige kombinasjoner av elementer,
 så la oss lage et todimensjonalt `array[n+1][c+1]` hvor vi kan lagre resultater underveis.
 I Koden vår kan vi først sjekke om vårt array inneholder et resultat, og returnerer i så fall det.
-Hvis ikke gjør vi som tidligere, og lagrer resultatene underveis i arrayet
+Hvis ikke gjør vi som tidligere, og lagrer resultatene underveis i arrayet.
 
 <details>
   <summary>Eksempel på implementasjon i Kotlin</summary>
@@ -227,6 +228,6 @@ Dette gir oss en kompleksitet på `O(n)` som er mye bedre!
 
 ## Ønsker du noen tøffere utfordringer?
 Finn en bottom-up implementasjon av den algoritmen vi har laget nå, og prøv deg på testsettet (filene 'vekter.txt' og 'verdier.txt') med `10000` elementer.
-Med en kapasitet på `49877` skal høyeste samlede verdi bli `563647`
+Med en kapasitet på `49877` skal høyeste samlede verdi bli `563647`.
 
 Eller prøv deg på mer komplekse varianter av knapsack-problemet! 💪
