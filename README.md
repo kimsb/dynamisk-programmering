@@ -85,7 +85,7 @@ Da kan vi droppe de rekursive kallene og heller starte ved `n = 0` og fylle arra
 
 - hvis `n < 2`, returner `n`
 - ellers: lag et array med størrelse `n+1` og fyll `array[0] = 0` og `array[1] = 1`
-- loop fra `2` til `n` og fyll opp arrayet
+- loop fra `2` til `n` og fyll opp arrayet (`array[n] = array[n-1] + array[n-2]`)
 - returner `array[n]`
 
 <details>
